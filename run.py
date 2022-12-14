@@ -7,11 +7,10 @@
 from random import randint
 
 
-ENEMY_BOARD = [[' '] * 8 for x in range(8)]
-PLAYER_BOARD = [[' '] * 8 for x in range(8)]
-board = [[' '] * 8 for x in range(8)]
+enemy_board = [[' '] * 8 for x in range(8)]
+player_board = [[' '] * 8 for x in range(8)]
 
-coordinate_conversions_letters = {
+convert_let_to_num = {
     'A': 0,
     'B': 1,
     'C': 2,
@@ -22,7 +21,7 @@ coordinate_conversions_letters = {
     'H': 7
 }
 
-coordinate_conversions_numbers = {
+convert_num_to_num = {
     '1': 0,
     '2': 1,
     '3': 2,
@@ -34,58 +33,67 @@ coordinate_conversions_numbers = {
 }
 
 
-def display_board(board):
-    print('Welcome to Battleships')
+def display_board(player_board, enemy_board):
+    print('Your board')
     print('  A B C D E F G H')
     row_number = 1
-    for row in board:
+    for row in player_board:
+        print("%d|%s|" % (row_number, "|".join(row)))
+        row_number += 1
+    print('Enemy board')
+    print('  A B C D E F G H')
+    row_number = 1
+    for row in player_board:
         print("%d|%s|" % (row_number, "|".join(row)))
         row_number += 1
 
 
-def generate_enemy_ships(board):
+def player_ships():
+    pass
+
+
+def generate_enemy_ships(enemy_board):
     for ship in range(5):
-        ship_row, ship_column = randint(0, 7), randint(0, 7)
-        while board[ship_row][ship_column] == 'X':
-            ship_row, ship_column = randint(0, 7), randint(0, 7)
-        board[ship_row][ship_column] = 'X'
+        row, column = randint(0, 7), randint(0, 7)
+        while enemy_board[row][column] == 'X':
+            row, column = randint(0, 7), randint(0, 7)
+        enemy_board[row][column] = 'X'
 
 
 def attack_coordinates():
-    row = input('Please enter a ship row 1 - 8')
+    row = input('Please enter a ship row 1 - 8: ')
     while row not in '12345678':
         print('Please enter a valid row')
-        row = input('Please enter a ship row 1 - 8')
-    column = input('Please enter a ship column A - H').upper()
+        row = input('Please enter a ship row 1 - 8: ')
+    column = input('Please enter a ship column A - H: ').upper()
     while column not in 'ABCDEFGH':
         print('Please enter a valid column')
-        column = input('Please enter a ship column A - H').upper()
-    return int(row) - 1, coordinate_conversions_letters[column]
+        column = input('Please enter a ship column A - H: ').upper()
+    return int(row), convert_let_to_num[column]
 
 
 def count_ships_hit():
     count = 0
-    for row in board:
+    for row in player_board, enemy_board:
         for column in row:
             if column == 'X':
                 count += 1
     return count
 
 
-def enemy_strategy(ENEMY_BOARD):
+def enemy_strategy(player_board, enemy_board):
     turns = 32
     while turns > 0:
-        display_board(PLAYER_BOARD)
-        row, column = attack_coordinates()
-        if PLAYER_BOARD[row][column] == '-':
+        display_board(player_board)
+        if player_board[row][column] == '-':
             print('Area Clear')
-        elif ENEMY_BOARD[row][column] == 'X':
+        elif enemy_board[row][column] == 'X':
             print('Target Hit!')
-            PLAYER_BOARD[row][column] = 'X'
+            player_board[row][column] = 'X'
             turns -= 1
         else:
             print('Shot missed')
-            PLAYER_BOARD[row][column] = '-'
+            player_board[row][column] = '-'
             turns -= 1
         if count_ships_hit() == 5:
             print('Enemy defeated, Well done!')
@@ -94,10 +102,6 @@ def enemy_strategy(ENEMY_BOARD):
         if turns == 0:
             print("Battle Lost! we'll get 'em next time")
             break
-
-
-def player_ships():
-    pass
 
 
 def hit_miss():
@@ -112,13 +116,13 @@ def end_of_game():
     pass
 
 
-display_board(board)
-generate_enemy_ships(board)
+display_board(player_board)
+generate_enemy_ships(enemy_board)
 attack_coordinates()
 count_ships_hit()
-enemy_strategy(ENEMY_BOARD)
-print(ENEMY_BOARD)
-print(PLAYER_BOARD)
+enemy_strategy(player_board, enemy_board)
+print(enemy_board)
+print(player_board)
 
 # def see_instructions():
 # pass
