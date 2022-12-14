@@ -9,6 +9,8 @@ from random import randint
 
 enemy_board = [[' '] * 8 for x in range(8)]
 player_board = [[' '] * 8 for x in range(8)]
+row = int in range(8)
+column = str in range(8)
 
 convert_let_to_num = {
     'A': 0,
@@ -84,7 +86,7 @@ def count_ships_hit():
 def enemy_strategy(player_board, enemy_board):
     turns = 32
     while turns > 0:
-        display_board(player_board)
+        display_board(player_board, enemy_board)
         if player_board[row][column] == '-':
             print('Area Clear')
         elif enemy_board[row][column] == 'X':
@@ -116,7 +118,7 @@ def end_of_game():
     pass
 
 
-display_board(player_board)
+display_board(player_board, enemy_board)
 generate_enemy_ships(enemy_board)
 attack_coordinates()
 count_ships_hit()
