@@ -115,6 +115,7 @@ def end_of_game():
 display_board(board)
 generate_enemy_ships(board)
 attack_coordinates()
+count_ships_hit()
 enemy_strategy(ENEMY_BOARD)
 print(ENEMY_BOARD)
 print(PLAYER_BOARD)
