@@ -35,8 +35,8 @@ coordinate_conversions_numbers = {
 
 
 def display_board(board):
+    print('Welcome to Battleships')
     print('  A B C D E F G H')
-    print('  ---------------')
     row_number = 1
     for row in board:
         print("%d|%s|" % (row_number, "|".join(row)))
@@ -63,25 +63,44 @@ def attack_coordinates():
     return int(row) - 1, coordinate_conversions_letters[column]
 
 
-# def see_instructions():
-    # pass
-# def player_info():
-    # pass
+def count_ships_hit():
+    count = 0
+    for row in board:
+        for column in row:
+            if column == 'X':
+                count += 1
+    return count
+
+
+def enemy_strategy(ENEMY_BOARD):
+    turns = 32
+    while turns > 0:
+        display_board(PLAYER_BOARD)
+        row, column = attack_coordinates()
+        if PLAYER_BOARD[row][column] == '-':
+            print('Area Clear')
+        elif ENEMY_BOARD[row][column] == 'X':
+            print('Target Hit!')
+            PLAYER_BOARD[row][column] = 'X'
+            turns -= 1
+        else:
+            print('Shot missed')
+            PLAYER_BOARD[row][column] = '-'
+            turns -= 1
+        if count_ships_hit() == 5:
+            print('Enemy defeated, Well done!')
+            break
+        print('You have ' + str(turns) + 'shots left')
+        if turns == 0:
+            print("Battle Lost! we'll get 'em next time")
+            break
 
 
 def player_ships():
     pass
 
 
-def enemy_strategy():
-    pass
-
-
 def hit_miss():
-    pass
-
-
-def count_ships_hits():
     pass
 
 
@@ -96,3 +115,11 @@ def end_of_game():
 display_board(board)
 generate_enemy_ships(board)
 attack_coordinates()
+enemy_strategy(ENEMY_BOARD)
+print(ENEMY_BOARD)
+print(PLAYER_BOARD)
+
+# def see_instructions():
+# pass
+# def player_info():
+# pass
