@@ -35,31 +35,26 @@ convert_num_to_num = {
 }
 
 
-def display_board(player_board, enemy_board):
+def display_board(player_board):
     print('Your board')
     print('  A B C D E F G H')
     row_number = 1
     for row in player_board:
         print("%d|%s|" % (row_number, "|".join(row)))
         row_number += 1
-    print('Enemy board')
-    print('  A B C D E F G H')
-    row_number = 1
-    for row in player_board:
-        print("%d|%s|" % (row_number, "|".join(row)))
-        row_number += 1
+
 
 
 def player_ships():
-    pass
+    pass  # choose where to place ships
 
 
 def generate_enemy_ships(enemy_board):
     for ship in range(5):
-        row, column = randint(0, 7), randint(0, 7)
-        while enemy_board[row][column] == 'X':
-            row, column = randint(0, 7), randint(0, 7)
-        enemy_board[row][column] = 'X'
+        ship_row, ship_column = randint(0, 7), randint(0, 7)
+        while enemy_board[ship_row][ship_column] == 'X':
+            ship_row, ship_column = randint(0, 7), randint(0, 7)
+        enemy_board[ship_row][ship_column] = 'X'
 
 
 def attack_coordinates():
@@ -83,10 +78,9 @@ def count_ships_hit():
     return count
 
 
-def enemy_strategy(player_board, enemy_board):
+def enemy_strategy(enemy_board):
     turns = 32
     while turns > 0:
-        display_board(player_board, enemy_board)
         if player_board[row][column] == '-':
             print('Area Clear')
         elif enemy_board[row][column] == 'X':
@@ -100,7 +94,7 @@ def enemy_strategy(player_board, enemy_board):
         if count_ships_hit() == 5:
             print('Enemy defeated, Well done!')
             break
-        print('You have ' + str(turns) + 'shots left')
+        print('You have ' + str(turns) + ' shots left')
         if turns == 0:
             print("Battle Lost! we'll get 'em next time")
             break
@@ -118,11 +112,12 @@ def end_of_game():
     pass
 
 
-display_board(player_board, enemy_board)
+display_board(player_board)
+display_board(enemy_board)
 generate_enemy_ships(enemy_board)
 attack_coordinates()
 count_ships_hit()
-enemy_strategy(player_board, enemy_board)
+enemy_strategy(enemy_board)
 print(enemy_board)
 print(player_board)
 
