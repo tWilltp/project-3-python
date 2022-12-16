@@ -54,10 +54,11 @@ def run_game():
     
     print('INSTRUCTIONS: write instructions')
     input('Play Game? press enter: ')
+    generate_player_ships(game_board)
     generate_enemy_ships(game_board)
     display_board(game_board)
     attack_coordinates()
-    check_player_strikes(row, column)
+    #  check_player_strikes(row, column)
 
 
 def display_board(game_board):
@@ -69,45 +70,40 @@ def display_board(game_board):
         row_number += 1
 
 
-def player_ships():
-    pass  # choose where to place ships
-
-
-def generate_enemy_ships(enemy_board):
+def generate_player_ships(game_board):
     for ship in range(5):
-        ship_row, ship_column = randint(0, 7), randint(0, 7)
-        while enemy_board[ship_row][ship_column] == 'X':
-            ship_row, ship_column = randint(0, 7), randint(0, 7)
-        enemy_board[ship_row][ship_column] = 'X'
+        ship_row, ship_column = randint(0, 8), randint(0, 19)
+        while game_board[ship_row][ship_column] == 'X':
+            ship_row, ship_column = randint(0, 8), randint(0, 19)
+        game_board[ship_row][ship_column] = 'X'
+
+
+def generate_enemy_ships(game_board):
+    for ship in range(5):
+        ship_row, ship_column = randint(0, 8), randint(0, 19)
+        while game_board[ship_row][ship_column] == '0':
+            ship_row, ship_column = randint(0, 8), randint(0, 19)
+        game_board[ship_row][ship_column] = ' '
 
 
 def attack_coordinates():
-    row = input('Please enter a ship row 1 - 8: ')
-    while row not in '12345678':
+    row = input('Please enter a ship row 1 - 9: ')
+    while row not in '123456789':
         print('Please enter a valid row')
-        row = input('Please enter a ship row 1 - 8: ')
-    column = input('Please enter a ship column A - H: ').upper()
-    while column not in 'ABCDEFGH':
+        row = input('Please enter a ship row 1 - 9: ')
+    column = input('Please enter a ship column A - T: ').upper()
+    while column not in 'ABCDEFGHIJKLMNOPQRST':
         print('Please enter a valid column')
-        column = input('Please enter a ship column A - H: ').upper()
+        column = input('Please enter a ship column A - T: ').upper()
     return int(row), convert_let_to_num[column]
 
 
-def count_ships_hit():
-    count = 0
-    for row in game_board:
-        for column in row:
-            if column == 'X':
-                count += 1
-    return count
-
-
-def enemy_strategy(game_board):
+def shots_fired(game_board):
     turns = 32
     while turns > 0:
         if game_board[row][column] == '-':
             print('Area Clear')
-        elif enemy_board[row][column] == 'X':
+        elif game_board[row][column] == 'X':
             print('Target Hit!')
             game_board[row][column] = 'X'
             turns -= 1
@@ -124,6 +120,15 @@ def enemy_strategy(game_board):
             break
 
 
+def count_ships_hit():
+    count = 0
+    for row in game_board:
+        for column in row:
+            if column == 'X':
+                count += 1
+    return count
+
+
 def hit_miss():
     pass
 
@@ -136,11 +141,9 @@ def end_of_game():
     pass
 
 
-display_board(game_board)
-generate_enemy_ships(game_board)
-attack_coordinates()
-count_ships_hit()
-enemy_strategy(game_board)
+run_game()
+# count_ships_hit()
+# shots_fired(game_board)
 
 # def see_instructions():
 # pass
