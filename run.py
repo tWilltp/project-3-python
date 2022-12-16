@@ -6,11 +6,13 @@
 
 from random import randint
 
-
-enemy_board = [[' '] * 8 for x in range(8)]
-player_board = [[' '] * 8 for x in range(8)]
-row = int in range(8)
-column = str in range(8)
+game_board = [[' '] * 20 for x in range(9)]
+enemy_ships = []
+player_ships = []
+enemy_strikes = []
+player_strikes = []
+row = int in range(9)
+column = str in range(20)
 
 convert_let_to_num = {
     'A': 0,
@@ -20,7 +22,19 @@ convert_let_to_num = {
     'E': 4,
     'F': 5,
     'G': 6,
-    'H': 7
+    'H': 7,
+    'I': 8,
+    'J': 9,
+    'K': 10,
+    'L': 11,
+    'M': 12,
+    'N': 13,
+    'O': 14,
+    'P': 15,
+    'Q': 16,
+    'R': 17,
+    'S': 18,
+    'T': 19,
 }
 
 convert_num_to_num = {
@@ -31,18 +45,28 @@ convert_num_to_num = {
     '5': 4,
     '6': 5,
     '7': 6,
-    '8': 7
+    '8': 7,
+    '9': 8,
 }
 
 
-def display_board(player_board):
+def run_game():
+    
+    print('INSTRUCTIONS: write instructions')
+    input('Play Game? press enter: ')
+    generate_enemy_ships(game_board)
+    display_board(game_board)
+    attack_coordinates()
+    check_player_strikes(row, column)
+
+
+def display_board(game_board):
     print('Your board')
-    print('  A B C D E F G H')
+    print('  A B C D E F G H I J K L M N O P Q R S T')
     row_number = 1
-    for row in player_board:
+    for row in game_board:
         print("%d|%s|" % (row_number, "|".join(row)))
         row_number += 1
-
 
 
 def player_ships():
@@ -71,25 +95,25 @@ def attack_coordinates():
 
 def count_ships_hit():
     count = 0
-    for row in player_board, enemy_board:
+    for row in game_board:
         for column in row:
             if column == 'X':
                 count += 1
     return count
 
 
-def enemy_strategy(enemy_board):
+def enemy_strategy(game_board):
     turns = 32
     while turns > 0:
-        if player_board[row][column] == '-':
+        if game_board[row][column] == '-':
             print('Area Clear')
         elif enemy_board[row][column] == 'X':
             print('Target Hit!')
-            player_board[row][column] = 'X'
+            game_board[row][column] = 'X'
             turns -= 1
         else:
             print('Shot missed')
-            player_board[row][column] = '-'
+            game_board[row][column] = '-'
             turns -= 1
         if count_ships_hit() == 5:
             print('Enemy defeated, Well done!')
@@ -112,14 +136,11 @@ def end_of_game():
     pass
 
 
-display_board(player_board)
-display_board(enemy_board)
-generate_enemy_ships(enemy_board)
+display_board(game_board)
+generate_enemy_ships(game_board)
 attack_coordinates()
 count_ships_hit()
-enemy_strategy(enemy_board)
-print(enemy_board)
-print(player_board)
+enemy_strategy(game_board)
 
 # def see_instructions():
 # pass
