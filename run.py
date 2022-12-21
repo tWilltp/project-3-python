@@ -6,7 +6,7 @@
 
 from random import randint
 
-game_board = [[' '] * 20 for x in range(9)]
+game_board = [[' '] * 9 for x in range(10)]
 enemy_ships = []
 player_ships = []
 enemy_strikes = []
@@ -25,16 +25,6 @@ convert_let_to_num = {
     'H': 7,
     'I': 8,
     'J': 9,
-    'K': 10,
-    'L': 11,
-    'M': 12,
-    'N': 13,
-    'O': 14,
-    'P': 15,
-    'Q': 16,
-    'R': 17,
-    'S': 18,
-    'T': 19,
 }
 
 convert_num_to_num = {
@@ -47,6 +37,7 @@ convert_num_to_num = {
     '7': 6,
     '8': 7,
     '9': 8,
+    '0': 9,
 }
 
 
@@ -63,7 +54,7 @@ def run_game():
 
 def display_board(game_board):
     print('Your board')
-    print('  A B C D E F G H I J K L M N O P Q R S T')
+    print('  A B C D E F G H I J')
     row_number = 1
     for row in game_board:
         print("%d|%s|" % (row_number, "|".join(row)))
@@ -72,35 +63,35 @@ def display_board(game_board):
 
 def generate_player_ships(game_board):
     for ship in range(5):
-        ship_row, ship_column = randint(0, 8), randint(0, 19)
+        ship_row, ship_column = randint(0, 9), randint(0, 99)
         while game_board[ship_row][ship_column] == 'X':
-            ship_row, ship_column = randint(0, 8), randint(0, 19)
+            ship_row, ship_column = randint(0, 9), randint(0, 9)
         game_board[ship_row][ship_column] = 'X'
 
 
 def generate_enemy_ships(game_board):
     for ship in range(5):
-        ship_row, ship_column = randint(0, 8), randint(0, 19)
+        ship_row, ship_column = randint(0, 9), randint(0, 9)
         while game_board[ship_row][ship_column] == '0':
-            ship_row, ship_column = randint(0, 8), randint(0, 19)
+            ship_row, ship_column = randint(0, ), randint(0, 9)
         game_board[ship_row][ship_column] = ' '
 
 
 def attack_coordinates():
-    row = input('Please enter a ship row 1 - 9: ')
+    row = input('Please enter a ship row 1 - 0: ')
     while row not in '123456789':
         print('Please enter a valid row')
-        row = input('Please enter a ship row 1 - 9: ')
-    column = input('Please enter a ship column A - T: ').upper()
+        row = input('Please enter a ship row 1 - 0: ')
+    column = input('Please enter a ship column A - J: ').upper()
     while column not in 'ABCDEFGHIJKLMNOPQRST':
         print('Please enter a valid column')
-        column = input('Please enter a ship column A - T: ').upper()
+        column = input('Please enter a ship column A - J: ').upper()
     return int(row), convert_let_to_num[column]
 
 
 def shots_fired(game_board):
-    turns = 32
-    while turns > 0:
+    turns = 25
+    while turns <= 25:
         if game_board[row][column] == '-':
             print('Area Clear')
         elif game_board[row][column] == 'X':
@@ -145,7 +136,5 @@ run_game()
 # count_ships_hit()
 # shots_fired(game_board)
 
-# def see_instructions():
-# pass
 # def player_info():
 # pass
