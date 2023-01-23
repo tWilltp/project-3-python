@@ -86,7 +86,7 @@ def attack_coordinates():
     # Enter the Ship column from A TO H
 
     column = input('Please enter a ship column A - I: ').upper()
-    while column not in 'ABCDEFGHIJKLMNOPQRST':
+    while column not in 'ABCDEFGHI':
         print('Please enter a valid column')
         column = input('Please enter a ship column A - I: ').upper()
     return int(row)-1, convert_let_to_num[column]
@@ -140,6 +140,10 @@ def shots_fired(game_board):
 
         elif game_board[row][column] == 'X':
             print('Friendly fire, guess again')
+            shots_fired(game_board)
+
+        elif game_board[row][column] == 'S':
+            print('Area clear, guess again')
             shots_fired(game_board)
 
         elif game_board[row][column] == '0':
