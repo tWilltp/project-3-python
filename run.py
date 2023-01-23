@@ -125,6 +125,7 @@ def computer_shot(game_board):
             print("Battle Lost! we'll get 'em next time")
             break
 
+        shots_fired(game_board)
         print('You have ' + str(count_comp_ships_hit()) + ' ships left')
 
 
@@ -138,9 +139,11 @@ def shots_fired(game_board):
 
         if game_board[row][column] == '-':
             print('Area clear, guess again')
+            shots_fired(game_board)
 
         elif game_board[row][column] == 'X':
             print('Friendly fire, guess again')
+            shots_fired(game_board)
 
         elif game_board[row][column] == '0':
             print('Target Hit!')
