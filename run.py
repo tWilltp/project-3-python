@@ -7,10 +7,7 @@
 from random import randint
 
 game_board = [[' '] * 9 for x in range(9)]
-enemy_ships = []
-player_ships = []
-enemy_strikes = []
-player_strikes = []
+turns = 0
 row = int in range(8)
 column = str in range(8)
 
@@ -97,8 +94,8 @@ def attack_coordinates():
 
 def computer_shot(game_board):
 
-    turns = 25
-    while turns > 0:
+    turns = 0
+    while turns < 26:
 
         display_board(game_board)
         row, column = randint(0, 8), randint(0, 8)
@@ -106,7 +103,7 @@ def computer_shot(game_board):
         if game_board[row][column] == ' ':
             print('computer missed')
             game_board[row][column] = '-'
-            turns -= 1
+            turns += 1
 
         elif game_board[row][column] == '0':
             computer_shot(game_board)
@@ -114,12 +111,12 @@ def computer_shot(game_board):
         elif game_board[row][column] == 'X':
             print('You lost a ship')
             game_board[row][column] = 'L'
-            turns -= 1
+            turns += 1
 
         else:
             print('Computer shot missed')
             game_board[row][column] = '-'
-            turns -= 1
+            turns += 1
 
         if count_comp_ships_hit() == 5:
             print("Battle Lost! we'll get 'em next time")
@@ -131,8 +128,8 @@ def computer_shot(game_board):
 
 def shots_fired(game_board):
 
-    turns = 25
-    while turns > 0:
+    turns = 0
+    while turns < 26:
 
         display_board(game_board)
         row, column = attack_coordinates()
@@ -148,21 +145,22 @@ def shots_fired(game_board):
         elif game_board[row][column] == '0':
             print('Target Hit!')
             game_board[row][column] = 'S'
-            turns -= 1
+            turns += 1
 
         else:
             print('Shot missed')
             game_board[row][column] = '-'
-            turns -= 1
+            turns += 1
 
         if count_ships_hit() == 5:
             print('Enemy defeated, Well done!')
+            end_game()
             break
 
         computer_shot(game_board)
         print('You have ' + str(turns) + ' shots left')
         
-        if turns == 0:
+        if turns == 25:
             print("Battle Lost! we'll get 'em next time")
             break
 
@@ -183,6 +181,12 @@ def count_comp_ships_hit():
             if column == 'L':
                 count += 1
     return count
+
+
+def end_game():
+
+    print('You took ' + str(turns) + ' shots to sink all ships, play again?')
+    run_game()
 
 
 run_game()
