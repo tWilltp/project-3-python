@@ -12,6 +12,8 @@ from random import randint
 game_board = [[' '] * 9 for x in range(9)]
 row = int in range(8)
 column = str in range(8)
+turns = 20
+took = 0
 
 # Row and Column conversions
 
@@ -43,20 +45,21 @@ convert_num_to_num = {
 
 
 def run_game():
-    
+
     print('INSTRUCTIONS: write instructions')
     input('Play Game? press enter: ')
     generate_player_ships(game_board)
     generate_enemy_ships(game_board)
-    display_board(game_board)
-    attack_coordinates()
     shots_fired(game_board)
+    attack_coordinates()
     count_ships_hit()
+    count_comp_ships_hit()
 
 # Function that displays the board
 
 
 def display_board(game_board):
+
     print('Your board')
     print('  A B C D E F G H I')
     row_number = 1
@@ -68,6 +71,7 @@ def display_board(game_board):
 
 
 def generate_player_ships(game_board):
+
     for ship in range(5):
         ship_row, ship_column = randint(0, 8), randint(0, 8)
         while game_board[ship_row][ship_column] == 'X':
@@ -78,6 +82,7 @@ def generate_player_ships(game_board):
 
 
 def generate_enemy_ships(game_board):
+
     for ship in range(5):
         ship_row, ship_column = randint(0, 8), randint(0, 8)
         while game_board[ship_row][ship_column] == '0':
@@ -142,7 +147,7 @@ def computer_shot(game_board):
 
     elif count_comp_ships_hit() == 0:
         print("Battle Lost! we'll get 'em next time")
-        end_game()
+        end_game_d()
 
     # sets up the players next turn
 
@@ -154,62 +159,62 @@ def computer_shot(game_board):
 
 def shots_fired(game_board):
 
-    turns = 25
-    while turns > 0:
+    global turns, took
 
-        display_board(game_board)
-        row, column = attack_coordinates()
+    display_board(game_board)
+    row, column = attack_coordinates()
 
-        # makes sure the player cannot input the same area twice
+    # makes sure the player cannot input the same area twice
 
-        if game_board[row][column] == '-':
-            print('Area clear, guess again')
-            shots_fired(game_board)
+    if game_board[row][column] == '-':
+        print('Area clear, guess again')
+        shots_fired(game_board)
 
-        # makes sure the player cannot hit their own ships
+    # makes sure the player cannot hit their own ships
 
-        elif game_board[row][column] == 'X':
-            print('Friendly fire, guess again')
-            shots_fired(game_board)
+    elif game_board[row][column] == 'X':
+        print('Friendly fire, guess again')
+        shots_fired(game_board)
 
-        # makes sure the player cannot hit an already sunken ship
+    # makes sure the player cannot hit an already sunken ship
 
-        elif game_board[row][column] == 'S':
-            print('Area clear, guess again')
-            shots_fired(game_board)
+    elif game_board[row][column] == 'S':
+        print('Area clear, guess again')
+        shots_fired(game_board)
 
-        # verifies a succesful hit and marks the sunken ship as 'S'
+    # verifies a succesful hit and marks the sunken ship as 'S'
 
-        elif game_board[row][column] == '0':
-            print('Target Hit!')
-            game_board[row][column] = 'S'
-            turns -= 1
-            print('You have ' + str(turns) + ' shots left')
+    elif game_board[row][column] == '0':
+        print('Target Hit!')
+        game_board[row][column] = 'S'
+        turns -= 1
+        took += 1
+        print('You have ' + str(turns) + ' shots left')
 
-        # marks a missed shot by '-'
+    # marks a missed shot by '-'
 
-        else:
-            print('Shot missed')
-            game_board[row][column] = '-'
-            turns -= 1
-            print('You have ' + str(turns) + ' shots left')
+    else:
+        print('Shot missed')
+        game_board[row][column] = '-'
+        turns -= 1
+        took += 1
+        print('You have ' + str(turns) + ' shots left')
 
-        # ends game if the player sinks all enemy ships
+    # ends the game if the player runs out of shots
 
-        if count_ships_hit() == 5:
-            print('Enemy defeated, Well done!')
-            end_game()
+    if turns == 0:
+        print("Battle Lost! we'll get 'em next time")
+        end_game_tl()
 
-        # ends the game if the player runs out of shots
+    # ends game if the player sinks all enemy ships
 
-        elif turns == 0:
-            print("Battle Lost! we'll get 'em next time")
-            break
+    elif count_ships_hit() == 5:
+        print('Enemy defeated, Well done!')
+        end_game_w()
 
-        # allows the computer to take its turn after the player
+    # allows the computer to take its turn after the player
 
-        print(turns)
-        computer_shot(game_board)  
+    computer_shot(game_board)
 
 # Function that counts the sunken enemy ships so that 5 sunk ends the game
 
@@ -233,12 +238,28 @@ def count_comp_ships_hit():
                 count -= 1
     return count
 
-# Function that ends the game
+# Function that ends the game if the player wins
 
 
-def end_game():
+def end_game_w():
 
-    print('You took ' + str(Turns) + ' shots to sink all ships, play again?')
+    print('You took ' + str(took) + ' shots to sink all ships, play again?')
+    run_game()
+
+# Function that ends the game if the player loses all turns
+
+
+def end_game_tl():
+
+    print('You had ' + str(turns) + ' shots left, play again?')
+    run_game()
+
+# Function that ends the game if the player is defeated
+
+
+def end_game_d():
+
+    print('All your ships were sunk, play again?')
     run_game()
 
 # Function that starts the game
