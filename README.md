@@ -1,4 +1,3 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 Welcome tWilltp,
 
@@ -29,3 +28,124 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 
 -----
 Happy coding!
+
+---
+
+ # Project 3
+ 
+## Python essentials project
+
+* This site shows a basic example of an interactive game, battleships.
+* This project is designed as a training excersize, to consolidate my knowledge of python.  
+[Project3 view](URL 'blank')
+
+---
+
+# Table of contents
+
+- [UX](#UX)
+   - [Game creator aim](#Game-creator-aim)
+   - [Player aim](#Game-aim)
+   - [Game structure](#Game-structure)
+- [Technology](#Technology)
+- [Testing](#Testing)
+   - [Is the programme functional](#Is-the-programme-functional)
+   - [Main Bugs and Fixes](#Main-Bugs-and-Fixes)
+   - [Performance Testing](#Performance-Testing)
+   - [Code Validation](#Code-Validation)
+   - [Development Issues](#Development-Issues)
+- [Deployment](#Deployment)
+- [Credits](#Credits)
+
+# UX
+
+## Game Creator Aim
+
+In this project I aimed to create a game that would be easily understandable with a flow that would feel intuitive from the user's perspective. The game had to weave the aspects/information I wanted it to contain, in a well structured layout, not only being enjoyable but demonstrating my grasp of python.
+
+## Player Aim
+
+The user should have all the necessary information laid out to them in a concise yet descriptive manor, if by their first move they are able to shoot accurately and know the parameters for winning and losing and carry the game out to it's final conclusion then I would consider the game a success.
+
+## Game Structure
+
+The game begins with a positive welcome message followed by the rules being explained immediately, if the player decides to play then their board is displayed allowing the player to see their ships (with randomly generated positions) while the enemy ships are hidden from sight (randomly generated also). The player is prompted to input the position of their shot after which, the computer will fire it's shot (randomly generated) a message is displayed letting the player know the outcomes of either shot. That is the play cycle, the new board is displayed with each of the shot's effects being added and the player continues until the and of the game when the player is shown how many shots away they were from winning or how many it took for them to secure victory.
+
+## features
+
+* The board size is 9 * 9 using letters and numbers to denote the coordinates
+* A hit is represented by 'S' for sunk
+* A miss is represented by '-'
+* player sunk ship is represented by 'L' for loss
+* player ship is represented by 'X'
+* if the player puts in the same shot, they are told by the message 'Area clear, Guess again'
+* The player has 20 turns to win
+
+---
+
+# Technology
+
+## Python
+
+* The programming language I used to develop the code for this project.
+
+## Git-hub
+
+* The software hosting platform I used for this project.
+
+## Git-pod
+
+* The development hosting platform I used for this Project.
+
+---
+
+# Testing
+
+## Is the programme funtional
+
+The progamme runs as I expect it to, with the information coming in an order that is easy to follow and gameplay that properly relates the players position and options as they move through to the end.
+
+## Main Bugs and Fixes
+
+* Bug: due to the different ways the game can end, the relevant information was not accurately displayed.
+* Fix: differnet endgame functions were created so after the different types of losses/wins the code was directed properly.
+
+* Bug: the number of shots a player has left is always registered as 19.
+* Fix: I used a global value since the local value was always reset with each shot meaning 20 would go down to 19 repeatedly.
+
+* Bug: if the player hits a sunken enemy ship it is registered as 'shot missed'.
+* Fix: I added a condition to the shots fired function so that if the player hits 'S' 'Area clear' is printed.
+
+* Bug: if the computer hits an unnacceptable target e.g. '-', 'L', 'S' the board is printed and it guesses again instead of guessing again and printing the board with the acceptable target.
+* Fix: I changed the structure of the computer shot function so that displayboard() was printed after the computer found an acceptable target.
+
+## Performance Testing
+
+The final tests I ran on my code were as follows:
+
+Test | Desired result yes | Desired result no | Fail
+---|---|---|---
+can the player input the same coordinates twice | | X |
+can the player fire on their own ships | | X |
+can the computer fire on an unacceptable coordinate ('-','L','S') | | X |
+can the player fire on the enemy ships | X | |
+if the computer sinks all of the players ships, is the proper end game function called | X | |
+if the player sinks all of the enemy ships, is the proper end game function called | X | |
+if the player turns expire, is the proper end game function called | X | |
+is the amount of shots taken for the player to win displayed at the end of the game | X | |
+
+## Code Validation
+
+## Development Issues
+
+---
+
+# Deployment
+
+---
+
+# Credits
+
+* 
+* 
+* 

@@ -2,6 +2,7 @@
 # '-' for missed shot
 # ' ' for available space
 # 'X' for player ship
+# '0' for enemy ship
 # 'S' for sunken enemy ship
 # 'L' for sunken player ship
 
@@ -45,7 +46,9 @@ convert_num_to_num = {
 
 
 def run_game():
-
+    
+    # clear_board(game_board)
+    print('Positive welcome message')
     print('INSTRUCTIONS: write instructions')
     input('Play Game? press enter: ')
     generate_player_ships(game_board)
@@ -54,6 +57,26 @@ def run_game():
     attack_coordinates()
     count_ships_hit()
     count_comp_ships_hit()
+
+# Function that clears the previously played board
+
+
+# def clear_board(game_board):
+
+#     if game_board[row][column] == '-':
+#         game_board[row][column] = ' '
+
+#     if game_board[row][column] == 'X':
+#         game_board[row][column] = ' '
+    
+#     if game_board[row][column] == 'L':
+#         game_board[row][column] = ' '
+
+#     if game_board[row][column] == 'S':
+#         game_board[row][column] = ' '
+
+#     if game_board[row][column] == '0':
+#         game_board[row][column] = ' '
 
 # Function that displays the board
 
