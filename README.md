@@ -152,6 +152,6 @@ The project is deployed using Heroku
 
 # Credits
 
-* 
-* 
-* 
+* [Github battleships example](https://gist.github.com/w0300133/7f3e3e6f836e519f64272150ca34080c)
+* [Pythondex battleship example](https://pythondex.com/python-battleship-game)
+* [Stack overflow](https://stackoverflow.com/questions/36695039/python-battleships-game)
