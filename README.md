@@ -103,7 +103,7 @@ The game begins with a positive welcome message followed by the rules being expl
 
 ## Is the programme funtional
 
-The progamme runs as I expect it to, with the information coming in an order that is easy to follow and gameplay that properly relates the players position and options as they move through to the end.
+The progamme runs as I expect it to, with the information coming in an order that is easy to follow and gameplay that properly relates to the player, their position and options as they move through to the end.
 
 ## Main Bugs and Fixes
 
@@ -136,11 +136,17 @@ is the amount of shots taken for the player to win displayed at the end of the g
 
 ## Code Validation
 
+The python code passes through the pep8 linter, with no significant issues.
+
 ## Development Issues
+
+The largest and most time consuming issue I encountered while developing the game was to clear the board of all previous ships and shots. I tried many different tactics in order to get through this problem such as: using multiple if statements to change every symbol on the board back to a blank area; employing a while loop to loop through every square on the board changing them individually; placing the variable that generated the board in many different positions so that it would be built anew in a comprehensible way for the flow of the code. Some variant of the last attempt was correct as I had to set the board fresh in a new function using a global variable, then call that function for each of the respective endGame() functions.
 
 ---
 
 # Deployment
+
+The project is deployed using Heroku
 
 ---
 
