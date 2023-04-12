@@ -47,8 +47,16 @@ convert_num_to_num = {
 
 def run_game():
 
-    print('Positive welcome message')
-    print('INSTRUCTIONS: write instructions')
+    print('Hello and welcome to a functional Battleships game')
+    print('INSTRUCTIONS: You are given a 9 X 9 board')
+    print('On this board you have 5 ships marked X and 5 hidden enemy ships')
+    print('To fire your shot simply enter the row 1-9 and the column A-I')
+    print("You can't hit your own ships, a sunken enemy ship or a clear area")
+    print('After your shot is taken, the computer will shoot')
+    print('This will continue until:')
+    print('1 All of your ships are hit')
+    print('2 All of your enemies ships are hit')
+    print('3 All of your shots run out')
     input('Play Game? press enter: ')
     generate_player_ships(game_board)
     generate_enemy_ships(game_board)
