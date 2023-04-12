@@ -37,7 +37,7 @@ Happy coding!
 
 * This site shows a basic example of an interactive game, battleships.
 * This project is designed as a training excersize, to consolidate my knowledge of python.  
-[Project3 view](URL 'blank')
+[Project-3 view](URL 'blank')
 
 ---
 
@@ -95,7 +95,11 @@ The game begins with a positive welcome message followed by the rules being expl
 
 ## Git-pod
 
-* The development hosting platform I used for this Project.
+* The development hosting platform I used for this project.
+
+## Heroku
+
+* The back end hosting platform used to deploy this app.
 
 ---
 
@@ -140,17 +144,58 @@ The python code passes through the pep8 linter, with no significant issues.
 
 ## Development Issues
 
-The largest and most time consuming issue I encountered while developing the game was to clear the board of all previous ships and shots. I tried many different tactics in order to get through this problem such as: using multiple if statements to change every symbol on the board back to a blank area; employing a while loop to loop through every square on the board changing them individually; placing the variable that generated the board in many different positions so that it would be built anew in a comprehensible way for the flow of the code. Some variant of the last attempt was correct as I had to set the board fresh in a new function using a global variable, then call that function for each of the respective endGame() functions.
+The largest and most time consuming issue I encountered while developing the game was to clear the board of all previous ships and shots. I tried many different tactics in order to get through this problem such as: using multiple if statements to change every symbol on the board back to a blank area; employing a while loop to loop through every square on the board changing them individually; placing the variable that generated the board in many different positions so that it would be built anew in a comprehensible way for the flow of the code. Some variant of the last attempt was correct as I had to set the board fresh in a new function using a global variable, then call that function in each of the respective endGame() functions.
 
 ---
 
 # Deployment
 
-The project is deployed using Heroku
+## Github Deployment
+
+The website was delpoyed using GitHub. To do this I did the following;
+
+* When on the websites GitHub repository, click on the settings tab
+* Now on the settings page, on the left hand side of the page, click on the pages tab
+* Under the Source section, click on the drop down menu titled Branch and select main
+* The page is now published with a link available to use.
+
+ Veiw repository: [Project-3-python](https://github.com/tWilltp/project-3-python)
+
+## Creating a Fork or Copying
+
+To clone/fork/copy the repository you click on the fork tab which is situated next to unwatch tab in the top right corner of the page
+
+## Clone
+
+To create a clone you do the following;
+
+* Click on the code tab, left of the Gitpod tab
+* To the right of the repository name, click the clipboard icon
+* In the IED open GitBash
+* Change the working directory to the location you prefer
+* Add Git Clone with the copy of the repositroy name
+* Clone has been created
+
+## Repositroy deployment via Heroku
+
+* On the https://dashboard.heroku.com/apps page, click New and then select Create New App from the drop-down menu.
+* When the next page loads insert the App name and Choose a region. The click Create app
+* In the settings tab click on Reveal Config Vars and add the key Port and the value 8000. There were no credentials required for this app.
+* Below this click Add buildpack and choose python and nodejs in that order.
+
+## Deployment of the app
+
+* Click on the Deploy tab and select Github-Connect to Github.
+* Enter the repository name and click Search.
+* Choose the repository that holds the correct files and click Connect.
+* A choice is offered between manual or automatic deployment whereby the app is updated when changes are pushed to GitHub.
+* Once the deployment method has been chosen the app will be built and can be launched by clicking the Open app button at the top of the page.
 
 ---
 
 # Credits
+
+These are the examples and resources I used as inspiration for my code and to better understand what mistakes where being made and how to rectify them.
 
 * [Github battleships example](https://gist.github.com/w0300133/7f3e3e6f836e519f64272150ca34080c)
 * [Pythondex battleship example](https://pythondex.com/python-battleship-game)
