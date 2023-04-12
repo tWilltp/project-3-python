@@ -53,7 +53,7 @@ def run_game():
     print('To fire your shot simply enter the row 1-9 and the column A-I')
     print("You can't hit your own ships, a sunken enemy ship or a clear area")
     print('After your shot is taken, the computer will shoot')
-    print('This will continue until:')
+    print('This will continue until either:')
     print('1 All of your ships are hit')
     print('2 All of your enemies ships are hit')
     print('3 All of your shots run out')
@@ -106,7 +106,7 @@ def generate_enemy_ships(game_board):
 
     for ship in range(5):
         ship_row, ship_column = randint(0, 8), randint(0, 8)
-        while game_board[ship_row][ship_column] == '0':
+        while game_board[ship_row][ship_column] == ' ':
             ship_row, ship_column = randint(0, 8), randint(0, 8)
         game_board[ship_row][ship_column] = '0'
 
