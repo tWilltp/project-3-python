@@ -106,9 +106,9 @@ def generate_enemy_ships(game_board):
 
     for ship in range(5):
         ship_row, ship_column = randint(0, 8), randint(0, 8)
-        while game_board[ship_row][ship_column] == '0':
-            ship_row, ship_column = randint(0, 8), randint(0, 8)
-        game_board[ship_row][ship_column] = '0'
+        # while game_board[ship_row][ship_column] == ‘0’:
+        ship_row, ship_column = randint(0, 8), randint(0, 8)
+        # game_board[ship_row][ship_column] = ‘0’
 
 # Function that allows the player to target an area
 
@@ -223,7 +223,7 @@ def shots_fired(game_board):
 
     # ends the game if the player runs out of shots
 
-    if turns == -50:
+    if turns == 0:
         print("Battle Lost! we'll get 'em next time")
         end_game_tl(game_board)
 
