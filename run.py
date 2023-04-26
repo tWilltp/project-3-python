@@ -121,15 +121,14 @@ def attack_coordinates():
     # Enter the row number between 1 to 9
 
     row = input('Please enter a ship row 1 - 9: ')
-    while row not in '123456789':
+    while row not in '123456789' or input != 0:
         print('Please enter a valid row')
         row = input('Please enter a ship row 1 - 9: ')
-        len(string) != 0
 
     # Enter the Ship column from A TO I
 
     column = input('Please enter a ship column A - I: ').upper()
-    while column not in 'ABCDEFGHI':
+    while column not in 'ABCDEFGHI' or input != 0:
         print('Please enter a valid column')
         column = input('Please enter a ship column A - I: ').upper()
     return int(row)-1, convert_let_to_num[column]
