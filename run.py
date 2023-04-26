@@ -82,11 +82,14 @@ def clear_board():
 def display_board(game_board):
 
     print('Your board')
-    print('  A B C D E F G H I')
-    row_number = 1
+    print('      A    B    C    D    E    F    G    H    I')
+    row_number = 0
     for row in game_board:
-        print("%d|%s|" % (row_number, "|".join(row)))
+        # print("row: ", row)
+        # print("%d|%s|" % (row_number, "|".join(row)))
         row_number += 1
+        row = row_number, list(map(lambda x: x.replace('0', ' '), row))
+        print(row)
 
 # Function that places the player's ships randomly
 
@@ -106,9 +109,9 @@ def generate_enemy_ships(game_board):
 
     for ship in range(5):
         ship_row, ship_column = randint(0, 8), randint(0, 8)
-        # while game_board[ship_row][ship_column] == ‘0’:
-        ship_row, ship_column = randint(0, 8), randint(0, 8)
-        # game_board[ship_row][ship_column] = ‘0’
+        while game_board[ship_row][ship_column] == '0':
+            ship_row, ship_column = randint(0, 8), randint(0, 8)
+        game_board[ship_row][ship_column] = '0'
 
 # Function that allows the player to target an area
 
@@ -121,6 +124,7 @@ def attack_coordinates():
     while row not in '123456789':
         print('Please enter a valid row')
         row = input('Please enter a ship row 1 - 9: ')
+        len(string) != 0
 
     # Enter the Ship column from A TO I
 
