@@ -7,6 +7,7 @@
 # 'L' for sunken player ship
 
 from random import randint
+import re
 
 # Game variables
 
@@ -19,6 +20,15 @@ took = 0
 # Row and Column conversions
 
 convert_let_to_num = {
+    'a': 0,
+    'b': 1,
+    'c': 2,
+    'd': 3,
+    'e': 4,
+    'f': 5,
+    'g': 6,
+    'h': 7,
+    'i': 8,
     'A': 0,
     'B': 1,
     'C': 2,
@@ -120,17 +130,23 @@ def attack_coordinates():
 
     # Enter the row number between 1 to 9
 
-    row = input('Please enter a ship row 1 - 9: ')
-    while row not in '123456789' or input != 0:
-        print('Please enter a valid row')
+    row = None
+    while True:
         row = input('Please enter a ship row 1 - 9: ')
-
+        if re.match('[1-9]{1}$', row):
+            break
+        else:
+            print('Please enter a valid row')
+        
     # Enter the Ship column from A TO I
 
-    column = input('Please enter a ship column A - I: ').upper()
-    while column not in 'ABCDEFGHI' or input != 0:
-        print('Please enter a valid column')
-        column = input('Please enter a ship column A - I: ').upper()
+    column = None
+    while True:
+        column = input('Please enter a ship column A - I: ')
+        if re.match('[a-iA-I]{1}$', column):
+            break
+        else:
+            print('Please enter a valid column')
     return int(row)-1, convert_let_to_num[column]
 
 # Function that selects the computers targets randomly
