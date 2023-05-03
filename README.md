@@ -1,37 +1,4 @@
-
-Welcome tWilltp,
-
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
-
-## Reminders
-
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-Happy coding!
-
----
-
- # Project 3
+# Project 3
  
 ## Python essentials project
 
@@ -91,15 +58,15 @@ The game begins with a positive welcome message followed by the rules being expl
 
 ## Git-hub
 
-* The software hosting platform I used for this project.
+* The software hosting platform I used for this project. [link to github repo](https://github.com/tWilltp/project-3-python)
 
 ## Git-pod
 
-* The development hosting platform I used for this project.
+* The development hosting platform I used for this project. [link to gitpod workspace](https://twilltp-project3python-iy5rktxmppv.ws-eu96b.gitpod.io)
 
 ## Heroku
 
-* The back end hosting platform used to deploy this app.
+* The back end hosting platform used to deploy this app. [link to heroku dashboard](https://dashboard.heroku.com/apps/project-3-python)
 
 ---
 
@@ -138,9 +105,9 @@ if the player sinks all of the enemy ships, is the proper end game function call
 if the player turns expire, is the proper end game function called | X | |
 is the amount of shots taken for the player to win displayed at the end of the game | X | |
 
-## Code Validation
+## Python Linter
 
-The python code passes through the pep8 linter, with no significant issues.
+The python code passes through the pep8 linter (version 22.3.1) installed in gitpod, with no significant issues. [link to gitpod workspace](https://twilltp-project3python-iy5rktxmppv.ws-eu96b.gitpod.io)
 
 ## Development Issues
 
