@@ -4,7 +4,7 @@
 
 * This site shows a basic example of an interactive game, battleships.
 * This project is designed as a training excersize, to consolidate my knowledge of python.  
-[Project-3 view](URL 'blank')
+[Project-3 view](https://project-3-python.herokuapp.com/)
 
 ---
 
