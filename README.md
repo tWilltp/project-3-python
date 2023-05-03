@@ -58,7 +58,7 @@ The game begins with a positive welcome message followed by the rules being expl
 
 ## Git-hub
 
-* The software hosting platform I used for this project. [link to github repo](https://github.com/tWilltp/project-3-python)
+* The software hosting platform I used for this project.
 
 ## Git-pod
 

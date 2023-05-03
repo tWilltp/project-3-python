@@ -95,8 +95,6 @@ def display_board(game_board):
     print('      A    B    C    D    E    F    G    H    I')
     row_number = 0
     for row in game_board:
-        # print("row: ", row)
-        # print("%d|%s|" % (row_number, "|".join(row)))
         row_number += 1
         row = row_number, list(map(lambda x: x.replace('0', ' '), row))
         print(row)
@@ -202,7 +200,7 @@ def shots_fired(game_board):
     global turns, took
 
     display_board(game_board)
-    row, column = attack_coordinates()  # single area at time choose hole board
+    row, column = attack_coordinates()
 
     # makes sure the player cannot input the same area twice
 
